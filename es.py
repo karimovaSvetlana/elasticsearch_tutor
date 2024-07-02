@@ -1,13 +1,12 @@
-import os
 from elasticsearch import Elasticsearch
 
 username = 'elastic'
-password = os.getenv('ELASTIC_PASSWORD')
+password = open(".env", "r").read(92)[-17:]
 
 es = Elasticsearch(
     "https://localhost:9200",
     basic_auth=(username, password),
-    ca_certs='http_ca.crt'
+    ca_certs='certs/ca/ca.crt'
 )
 client_info = es.info()
 print('Connected to Elasticsearch!')

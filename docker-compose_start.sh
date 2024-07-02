@@ -1,11 +1,11 @@
 #!/bin/bash
 
+echo "|||||| docker-compose down"
+docker-compose down
+
 # Delete files locally
-rm -rf certs/ es_data/
+echo "|||||| rm -rf certs/ es_data/"
+rm -rf certs/ esdata01/ esdata02/ esdata03/ kibanadata/
 
-# Stop and remove containers
-docker stop container1 container2
-docker rm container1 container2
-
-# Start your main service (example: Elasticsearch)
-exec "$@"
+# Start your main service
+docker-compose up -d
